@@ -1,0 +1,5 @@
+<% @order.line_items.each do |line_item| %>
+  <h4><%= "Quantity: #{line_item.quantity}" %></h4>
+  <h4><%= "Item price: #{Float(line_item.item_price_cents / 100)}" %></h4>
+  <br>
+<% end %>

@@ -6,6 +6,9 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <%= render 'line_items' %>
+    <h4><%= "Total Amount: #{Float(@order.total_cents / 100)}" %></h4>
+    <h4><%= "Order details sent to: #{@order.email}" %></h4>
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
