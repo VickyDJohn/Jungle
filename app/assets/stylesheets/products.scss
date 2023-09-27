@@ -19,6 +19,13 @@ main section.categories-show {
       grid-template-columns: 1fr;
     }
     article {
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
       .soldout {
         min-width: 110px;
         background: rgba(224, 14, 14, 0.8);
@@ -28,6 +35,8 @@ main section.categories-show {
         padding: 0.375rem 0.75rem;
         font-size: 1rem;
         border-radius: 0.25rem;
+        width: 110px;
+        height: 35px;
       }
 
       a {
