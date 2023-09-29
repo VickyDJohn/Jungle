@@ -1,5 +1,13 @@
 <% @order.line_items.each do |line_item| %>
+  <div class="line-item">
+    <h4><%= "Product Name: #{line_item.product.name}" %></h4>
+    <%= image_tag(line_item.product.image_url, class: 'product-image') %>
+    <div class="product-details">
+      <p><%= "Description: #{line_item.product.description}" %></p>
+    </div>
+  </div>
   <h4><%= "Quantity: #{line_item.quantity}" %></h4>
-  <h4><%= "Item price: #{Float(line_item.item_price_cents / 100)}" %></h4>
+  <h4><%= "Item price: $#{number_with_precision(line_item.item_price_cents / 100.0, precision: 2, delimiter: '.', separator: '.')}" %></h4>
+  <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
   <br>
 <% end %>

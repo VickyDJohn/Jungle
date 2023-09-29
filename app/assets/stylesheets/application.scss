@@ -111,3 +111,20 @@ form.button_to {
 .text-danger {
   color: #f38792 !important;
 }
+
+.line-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.product-image {
+  max-width: 400px;
+  margin-right: 10px;
+}
+
+.product-details {
+  flex-grow: 1;
+}
