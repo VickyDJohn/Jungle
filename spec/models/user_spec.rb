@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'requires a unique email and is case-insensitive' do
-      existing_user = User.create(email: 'test@example.com', password: 'password')
+      existing_user = User.create(email: 'test@example.com', password: 'password', password_confirmation: 'password')
       new_user = User.new(email: 'test@example.COM', password: 'another_password', password_confirmation: 'another_password')
       expect(new_user).not_to be_valid
       expect(new_user.errors.full_messages).to include("Email has already been taken")
