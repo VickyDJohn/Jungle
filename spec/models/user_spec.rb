@@ -44,4 +44,41 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+  describe 'authenticate_with_credentials' do
+    it 'authenticates with valid credentials' do
+      user = User.create(email: 'test@example.com', password: 'password', password_confirmation: 'password')
+      authenticated_user = User.authenticate_with_credentials('test@example.com', 'password')
+
+      expect(authenticated_user).to eq(user)
+    end
+
+    it 'does not authenticate with invalid email' do
+      User.create(email: 'test@example.com', password: 'password')
+      authenticated_user = User.authenticate_with_credentials('invalid@example.com', 'password')
+
+      expect(authenticated_user).to be_nil
+    end
+
+    it 'does not authenticate with invalid password' do
+      User.create(email: 'test@example.com', password: 'password')
+      authenticated_user = User.authenticate_with_credentials('test@example.com', 'wrong_password')
+
+      expect(authenticated_user).to be_nil
+    end
+
+    it 'authenticates with trailing and leading whitespaces in email' do
+      user = User.create(email: 'test@example.com', password: 'password', password_confirmation: 'password')
+      authenticated_user = User.authenticate_with_credentials('  test@example.com  ', 'password')
+
+      expect(authenticated_user).to eq(user)
+    end
+
+    it 'authenticates with case-insensitive email' do
+      user = User.create(email: 'test@example.com', password: 'password', password_confirmation: 'password')
+      authenticated_user = User.authenticate_with_credentials('TEST@EXAMPLE.COM', 'password')
+
+      expect(authenticated_user).to eq(user)
+    end
+  end
 end
