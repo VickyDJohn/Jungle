@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   def self.authenticate_with_credentials(email, password)
+    email = email.to_s.strip
     # Find the user by email (case-insensitive)
     user = User.find_by("lower(email) = ?", email.strip.downcase)
 
